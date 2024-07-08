@@ -205,6 +205,9 @@
       if (order_id) {
         document.getElementById("consultationid").setAttribute("value", order_id)
       }
+      else{
+        document.getElementById("consultationid").setAttribute("value","")
+      }
       document.getElementById("allergy").hidden = true;
       console.log({ issue, allergy, language });
 
