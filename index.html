@@ -199,7 +199,12 @@
       var issue = params.get("issue");
       var allergy = params.get("allergy");
       var other = params.get("other");
+      var order_id = params.get('OrderID');
 
+//aakash new code 
+      if (order_id) {
+        document.getElementById("consultationid").setAttribute("value", order_id)
+      }
       document.getElementById("allergy").hidden = true;
       console.log({ issue, allergy, language });
 
@@ -377,6 +382,7 @@
         ) {
           document.getElementById("rother").innerHTML = other;
           sendData.other = other;
+          //key for function
         }
         myFunction(sendData);
       }
