@@ -210,51 +210,31 @@
                 this.setCustomValidity(''); // Clear custom validity message when input changes
             };
 
-            let issue = document.getElementById('issue');
+            // let issue = document.getElementById('issue');
+            // console.log(issue, "__issue")
 
-            if (issue == "Saya alergi terhadap obat yang diresepkan." || issue == "I'm allergic to the medicines prescribed.") {
-                document.getElementById('other').oninvalid = function () {
-                    this.setCustomValidity(customValidityMessages[language]['other']);
-                };
-                document.getElementById('other').oninput = function () {
-                    this.setCustomValidity(''); // Clear custom validity message when input changes
-                };
-            }
+            // if (issue == "Saya alergi terhadap obat yang diresepkan." || issue == "I'm allergic to the medicines prescribed.") {
+            //     document.getElementById('other').oninvalid = function () {
+            //         this.setCustomValidity(customValidityMessages[language]['other']);
+            //     };
+            //     document.getElementById('other').oninput = function () {
+            //         this.setCustomValidity(''); // Clear custom validity message when input changes
+            //     };
+            // }
 
 
-            if (issue == "Lainnya [mohon sebutkan]." || issue == "Other [please specify].") {
-                document.getElementById('allergy').oninvalid = function () {
-                    this.setCustomValidity(customValidityMessages[language]['other']);
-                };
-                document.getElementById('allergy').oninput = function () {
-                    this.setCustomValidity(''); // Clear custom validity message when input changes
-                };
-            }
+            // if (issue == "Lainnya [mohon sebutkan]." || issue == "Other [please specify].") {
+            //     document.getElementById('allergy').oninvalid = function () {
+            //         this.setCustomValidity(customValidityMessages[language]['other']);
+            //     };
+            //     document.getElementById('allergy').oninput = function () {
+            //         this.setCustomValidity(''); // Clear custom validity message when input changes
+            //     };
+            // }
 
         }
         // Call the function to apply the custom messages
         setCustomValidityMessages();
-
-        // Additional logic for showing/hiding the 'other' input based on the selected issue
-        document.getElementById('issue').addEventListener("change", function () {
-            let value = this.value;
-            if (value == "Saya alergi terhadap obat yang diresepkan." || value == "I'm allergic to the medicines prescribed.") {
-                document.getElementById('allergy').hidden = false;
-                document.getElementById('allergy').setAttribute("required", "required");
-            } else {
-                document.getElementById('allergy').hidden = true;
-                document.getElementById('allergy').removeAttribute("required");
-                console.log(document.getElementById('allergy'), "Allertgy__")
-            }
-            if (value == "Lainnya [mohon sebutkan]." || value == "Other [please specify].") {
-                document.getElementById('other').hidden = false;
-                document.getElementById('other').setAttribute("required", "required");
-            } else {
-                console.log(document.getElementById('other'), "Other__")
-                document.getElementById('other').hidden = true;
-                document.getElementById('other').removeAttribute("required");
-            }
-        });
 
         //aakash new code 
         if (order_id) {
@@ -279,9 +259,16 @@
                 document
                     .getElementById("allergy")
                     .setAttribute("required", "required");
+                document.getElementById('allergy').oninvalid = function () {
+                    this.setCustomValidity(customValidityMessages[language]['allergy']);
+                };
+                document.getElementById('allergy').oninput = function () {
+                    this.setCustomValidity(''); // Clear custom validity message when input changes
+                };
             } else {
                 document.getElementById("allergy").hidden = true;
                 document.getElementById("allergy").removeAttribute("required");
+                document.getElementById("allergy").setCustomValidity('')
             }
             if (
                 value == "Lainnya [mohon sebutkan]." ||
@@ -289,9 +276,16 @@
             ) {
                 document.getElementById("other").hidden = false;
                 document.getElementById("other").setAttribute("required", "required");
+                document.getElementById('other').oninvalid = function () {
+                    this.setCustomValidity(customValidityMessages[language]['other']);
+                };
+                document.getElementById('other').oninput = function () {
+                    this.setCustomValidity(''); // Clear custom validity message when input changes
+                };
             } else {
                 document.getElementById("other").hidden = true;
                 document.getElementById("other").removeAttribute("required");
+                document.getElementById("other").setCustomValidity('')
             }
         });
         // aakash other code
